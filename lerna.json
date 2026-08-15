@@ -1,0 +1,10 @@
+{
+  "npmClient": "npm",
+  "packages": ["packages/*", "providers/*"],
+  "command": {
+    "run": {
+      "ignore": ["packages/web3wallet"]
+    }
+  },
+  "version": "2.23.10"
+}
