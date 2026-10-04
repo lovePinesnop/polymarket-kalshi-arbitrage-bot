@@ -1,98 +1,60 @@
 {
-  "description": "Monorepo for WalletConnect",
-  "private": true,
-  "keywords": [
-    "wallet",
-    "walletconnect",
-    "ethereum",
-    "jsonrpc",
-    "mobile",
-    "qrcode",
-    "web3",
-    "crypto",
-    "cryptocurrency",
-    "dapp"
-  ],
-  "author": "WalletConnect, Inc. <walletconnect.com>",
-  "homepage": "https://github.com/NairobiArthur/walletconnect-monorepo/",
-  "license": "SEE LICENSE IN LICENSE.md",
-  "workspaces": [
-    "packages/types",
-    "packages/utils",
-    "packages/core",
-    "packages/sign-client",
-    "packages/react-native-compat",
-    "providers/universal-provider",
-    "providers/signer-connection",
-    "providers/ethereum-provider",
-    "packages/pos-client",
-    "packages/pay"
-  ],
-  "scripts": {
-    "clean": "npm run clean --workspaces --if-present",
-    "lint": "npm run lint --workspaces --if-present",
-    "prettier": "npm run prettier --workspaces --if-present",
-    "build": "npm run build --workspaces --if-present",
-    "test": "npm run test --workspaces --if-present",
-    "test:ignoreUnhandled": "npm run test:ignoreUnhandled --workspaces --if-present",
-    "check": "npm run lint; npm run build; npm run test",
-    "reset": "npm run clean; npm run check",
-    "new-version": "lerna version --no-private --no-git-tag-version --exact && npm run sh-update-versions",
-    "sh-update-versions": "sh ./scripts/update_lerna_json_version.sh && ./scripts/update_relayer_sdk_version.sh",
-    "pre-publish": "npm run new-version; npm run reset",
-    "npm-publish:rc": "lerna exec --no-private -- npm publish --access public --tag rc",
-    "npm-publish:latest": "lerna exec --no-private -- npm publish --access public --tag latest",
-    "npm-publish:next": "lerna exec --no-private -- npm publish --access public --tag next",
-    "npm-publish:canary": "lerna exec --no-private -- npm publish --access public --tag canary",
-    "changeset": "changeset",
-    "changeset:version": "changeset version --no-commit && npm i && npm run sh-update-versions && sh ./scripts/commit.sh",
-    "changeset:publish": "changeset publish"
-  },
+  "name": "polymarket-kalshi-arbitrage-bot",
+  "version": "3.0.0",
+  "description": "15-min market arbitrage bot: detect price differences between Polymarket and Kalshi, decide when to buy on Polymarket",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/NairobiArthur/walletconnect-monorepo.git"
+    "url": "https://github.com/txthinkin/polymarket-kalshi-arbitrage-bot.git"
   },
-  "bugs": {
-    "url": "https://github.com/NairobiArthur/walletconnect-monorepo/issues"
+  "homepage": "https://github.com/txthinkin/polymarket-kalshi-arbitrage-bot",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "ts-node-dev --respawn src/index.ts",
+    "typecheck": "tsc --noEmit"
   },
-  "overrides": {
-    "tar": "7.5.13",
-    "lodash": "4.17.23",
-    "vite": "7.3.1",
-    "axios": "1.14.0",
-    "@isaacs/brace-expansion": "5.0.1",
-    "@react-native-async-storage/async-storage": "3.0.2"
-  },
-  "devDependencies": {
-    "@changesets/changelog-github": "0.5.2",
-    "@changesets/cli": "2.29.8",
-    "@rollup/plugin-alias": "6.0.0",
-    "@rollup/plugin-commonjs": "29.0.2",
-    "@rollup/plugin-json": "6.1.0",
-    "@rollup/plugin-node-resolve": "16.0.3",
-    "@types/node": "18.19.122",
-    "@types/sinon": "21.0.0",
-    "@typescript-eslint/eslint-plugin": "8.57.2",
-    "@typescript-eslint/parser": "8.57.2",
-    "esbuild": "0.25.0",
-    "eslint": "8.57.0",
-    "eslint-config-prettier": "10.1.8",
-    "eslint-config-standard": "17.1.0",
-    "eslint-plugin-import": "2.32.0",
-    "eslint-plugin-n": "16.6.2",
-    "eslint-plugin-prettier": "5.5.5",
-    "eslint-plugin-promise": "6.6.0",
-    "eslint-plugin-react": "7.37.5",
-    "lerna": "9.0.7",
-    "prettier": "3.8.1",
-    "rollup": "4.60.1",
-    "rollup-plugin-esbuild": "6.2.1",
-    "rollup-plugin-visualizer": "5.14.0",
-    "sinon": "21.0.3",
-    "typescript": "5.9.3",
-    "vitest": "3.2.4"
+  "keywords": [
+    "polymarket",
+    "kalshi",
+    "arbitrage",
+    "trading",
+    "bot",
+    "15min",
+    "market",
+    "polymarket trading bot",
+    "kalshi trading bot",
+    "polymarket arbitrage bot",
+    "kalshi arbitrage bot",
+    "arbitrage bot in prediction market",
+    "polymarket bot",
+    "polymarket bot poly",
+    "arbitrge",
+    "polymarket bot poly arbitrage bot",
+    "polymarket kalshi trading bot",
+    "polymarket-kalshi-arbitrage",
+    "prediction-markets",
+    "event-contracts",
+    "clob",
+    "typescript-bot"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
   },
   "dependencies": {
-    "inquirer": "^14.0.2"
+    "@polymarket/clob-client": "^5.2.1",
+    "axios": "^1.6.2",
+    "dotenv": "^16.3.1",
+    "ethers": "^5.7.1",
+    "express": "^4.18.2",
+    "inquirer": "^14.0.2",
+    "validator": "^13.15.35"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.10.0",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.3.2"
   }
 }
